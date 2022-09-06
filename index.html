@@ -5,20 +5,26 @@
         </style>
     </head>
     <body>
+        <input type="text" id="user_id" value="">
         <input type="text" id="message" autocomplete="off" />
         <button onclick="transmitMessage()">Send</button>
         <script>
             // Create a new WebSocket.
-            var socket  = new WebSocket('ws://localhost:8080');
-
+            var socket  = new WebSocket('ws://localhost:8080');                        
             // Define the 
             var message = document.getElementById('message');
-
+            var user_id = document.getElementById('user_id');
             function transmitMessage() {
-                socket.send( message.value );
+                var messageJSON = {
+                    user_id: user_id.value,
+                    message: message.value
+                };
+                socket.send(JSON.stringify(messageJSON));
+                // socket.send( message.value );
             }
-
             socket.onmessage = function(e) {
+
+                console.log(e.data);
                 alert( e.data );
             }
         </script>

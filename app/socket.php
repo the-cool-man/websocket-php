@@ -21,14 +21,13 @@ class Socket implements MessageComponentInterface {
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-
+        
         foreach ( $this->clients as $client ) {
-
             if ( $from->resourceId == $client->resourceId ) {
                 continue;
             }
-
-            $client->send( "Client $from->resourceId said $msg" );
+            $client->send( $msg );
+            //$client->send( "Client $from->resourceId said $msg" );
         }
     }
 

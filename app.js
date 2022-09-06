@@ -1,1 +1,1 @@
-var conn = new WebSocket('ws://localhost:8080');
+var conn = new WebSocket('ws://localhost:8080', 'echo-protocol');
